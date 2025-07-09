@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Beacon Spammer</title>
+    <meta name="description" content="Easily allow users to install Beacon Spammer." />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark light" />
+
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background: radial-gradient(circle, #0f0f0f, #1a1a2e);
+        color: #e0e0e0;
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        animation: background-flow 10s ease-in-out infinite alternate;
+      }
+
+      @keyframes background-flow {
+        0% { background: radial-gradient(circle, #0f0f0f, #1a1a2e); }
+        100% { background: radial-gradient(circle, #1a1a2e, #0f0f0f); }
+      }
+
+      .content {
+        max-width: 600px;
+        padding: 20px;
+        background: rgba(0, 0, 0, 0.9);
+        border-radius: 20px;
+        box-shadow: 0 0 30px rgba(0, 255, 255, 0.8);
+        text-align: center;
+        transform: scale(1);
+        transition: transform 0.3s ease-in-out;
+      }
+
+      .content:hover {
+        transform: scale(1.05);
+      }
+
+      h1 {
+        font-size: 2.8em;
+        margin-bottom: 0.5em;
+        color: #00ffcc;
+        text-shadow: 0 0 20px #00ffcc;
+      }
+
+      p {
+        font-size: 1.2em;
+        margin-bottom: 1em;
+      }
+
+      .radios li {
+        list-style: none;
+        line-height: 2em;
+      }
+
+      label {
+        font-size: 1.2em;
+        cursor: pointer;
+        transition: color 0.3s ease-in-out;
+      }
+
+      input[type="radio"] {
+        transform: scale(1.5);
+        margin-right: 10px;
+      }
+
+      input[type="radio"]:checked + label {
+        color: #00ffcc;
+      }
+
+      esp-web-install-button {
+        background: linear-gradient(145deg, #00ffcc, #008b8b);
+        color: #000;
+        padding: 12px 24px;
+        border-radius: 12px;
+        font-size: 1.2em;
+        font-weight: bold;
+        box-shadow: 0 5px 20px rgba(0, 255, 255, 0.8);
+        cursor: pointer;
+        transition: 0.3s ease-in-out;
+      }
+
+      esp-web-install-button:hover {
+        background: #00e6e6;
+        box-shadow: 0 0 30px rgba(0, 255, 255, 1);
+      }
+
+      .invisible {
+        display: none;
+      }
+
+      @media (prefers-color-scheme: light) {
+        body {
+          background: #f5f5f5;
+          color: #333;
+        }
+        .content {
+          background: #fff;
+          box-shadow: 0 0 20px #6200ea;
+        }
+        h1 {
+          color: #6200ea;
+        }
+      }
+    </style>
+
+    <script type="module" src="https://unpkg.com/esp-web-tools@8.0.1/dist/web/install-button.js?module"></script>
+  </head>
+
+  <body>
+    <div class="content">
+      <h1>🚀 Qbaa134 Beacon Spammer</h1>
+      <p>Select your hardware:</p>
+      <ul class="radios">
+        <li>
+          <input type="radio" id="BS1" name="type" value="BS1" />
+          <label for="BS1">Beacon Spammer Classic (ESP8266)</label>
+        </li>
+        <li>
+          <input type="radio" id="BS2" name="type" value="BS2" />
+          <label for="BS2">Beacon Spammer Web Interface (ESP8266)</label>
+        </li>  
+        <li>
+          <input type="radio" id="BS3" name="type" value="BS3" />
+          <label for="BS3">Beacon Spammer Web Interface & RGB (ESP8266)</label>
+        </li>
+        <li>
+          <input type="radio" id="D1" name="type" value="D1" />
+          <label for="BS3">WiFi Deauther (ESP8266)</label>
+        </li>     
+      </ul>
+      <p class="button-row">
+        <esp-web-install-button class="invisible"> Install Firmware</esp-web-install-button>
+      </p>
+    </div>
+
+    <script>
+      document.querySelectorAll('input[name="type"]').forEach((radio) =>
+        radio.addEventListener("change", () => {
+          const button = document.querySelector("esp-web-install-button");
+          button.manifest = `bin/manifest_${radio.value}.json`;
+          button.classList.remove("invisible");
+        })
+      );
+    </script>
+  </body>
+</html>

@@ -1,0 +1,11 @@
+{
+  "name": "D1",
+  "builds": [
+    {
+      "chipFamily": "ESP32",
+      "parts": [
+        { "path": "main.ino.bin", "offset": 0 }
+      ]
+    }
+  ]
+}
