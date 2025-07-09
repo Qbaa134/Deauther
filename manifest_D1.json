@@ -4,7 +4,7 @@
     {
       "chipFamily": "ESP32",
       "parts": [
-        { "path": "main.ino.bin", "offset": 0 }
+        { "path": "main.ino.esp32.bin", "offset": 0 }
       ]
     }
   ]
